@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabong Betting Interface</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #1f2937; /* Dark Slate */
+            --secondary-bg: #374151; /* Medium Slate */
+            --red-meron: #dc2626;
+            --blue-wala: #3b82f6;
+            --green-tie: #10b981;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: #f3f4f6;
+        }
+
+        /* Custom styling for the betting chips */
+        .chip {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            transition: transform 0.1s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .chip:active {
+            transform: scale(0.95);
+        }
+
+        /* Responsive adjustments for the layout */
+        @media (max-width: 1024px) {
+            #main-container {
+                flex-direction: column;
+            }
+            #video-area {
+                width: 100%;
+                height: 40vh; /* Adjust height for mobile/tablet */
+            }
+            #betting-area {
+                width: 100%;
+                padding: 1rem;
+            }
+        }
+
+        /* Simple button styling */
+        .bet-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.2s;
+        }
+
+        /* Ensure the iframe element fits its container */
+        #myIframe {
+            width: 100%;
+            height: 100%;
+            border: none; /* Remove default iframe border */
+            /* Ensure the iframe fills the container and is positioned correctly relative to the betting bar */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex flex-col">
+        <!-- Header/Navbar -->
+        <header class="bg-gray-900 shadow-lg p-3 flex justify-between items-center text-sm sticky top-0 z-10">
+            <div class="flex items-center space-x-4">
+                <span class="text-green-500 font-extrabold text-lg">OPEN / #<span id="match-number">96</span></span>
+                <!-- Mock Icons/User Info from the original image -->
+                <div class="flex space-x-2 text-xl text-yellow-500">
+                    <!-- Placeholder icons (use font-awesome or inline SVG in a real app) -->
+                    <span>🐔</span>
+                    <span>🔥</span>
+                    <span>💰</span>
+                    <span>🔒</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="text-right">
+                    <p class="text-xs text-gray-400">AABBFDAAYY25</p>
+                    <p class="text-xs text-white">₱ 50,000.00</p>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center font-bold">PS</div>
+            </div>
+        </header>
+
+        <!-- Main Content Area: Video and Betting Panel -->
+        <main id="main-container" class="flex flex-grow lg:flex-row flex-col">
+            
+            <!-- Video/Live Stream Area (Left) -->
+            <div id="video-area" class="lg:w-3/4 w-full bg-black relative flex flex-col justify-end">
+                <!-- *** LIVE STREAM IFRAME STARTS HERE *** -->
+                <!-- The iframe uses the specified URL to embed the live video feed. -->
+                <iframe 
+                    class="responsive-iframe __web-inspector-hide-shortcut__" 
+                    id="myIframe" 
+                    src="https://cc.realtimevideo.cc/live/COCKFIGHPH1?origin=sb24&amp;token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoicGxheSIsImV4cCI6MTc2MTIxOTc5OCwidXNlcm5hbWUiOiJBQUJGREFZWTIxNSIsInVzZXJJZCI6MjUyMTMzMywiaWF0IjoxNzYxMjE5NzM4fQ.7fWWYIcvAEuvNTgFen39K4UC8z5WyEhDpbhZbPXXcV4">
+                </iframe>
+                <!-- *** LIVE STREAM IFRAME ENDS HERE *** -->
+                
+                <!-- Bottom Status Bar -->
+                <div class="absolute bottom-0 left-0 right-0 p-3 bg-gray-800 bg-opacity-70 flex justify-between items-center text-white text-sm">
+                    <!-- Left: MERON Cock Details -->
+                    <div class="flex items-center space-x-2">
+                        <div class="bg-red-600 p-2 rounded-lg text-center font-bold">MERON</div>
+                        <div>
+                            <p class="font-bold">TGE JOBERT AGUILA</p>
+                            <p>1 1</p>
+                        </div>
+                        <span class="text-3xl font-extrabold text-red-600 ml-4">1960</span>
+                    </div>
+
+                    <!-- Center: Match Info -->
+                    <div class="text-center font-bold text-lg">
+                        <p class="text-gray-300">96</p>
+                        <p class="text-yellow-500 text-2xl">&gt;&gt; &amp; &lt;&lt;</p>
+                    </div>
+
+                    <!-- Right: WALA Cock Details -->
+                    <div class="flex items-center space-x-2">
+                        <span class="text-3xl font-extrabold text-blue-500 mr-4">1960</span>
+                        <div>
+                            <p class="font-bold">PANTAO GLADIATOR</p>
+                            <p>0</p>
+                        </div>
+                        <div class="bg-blue-600 p-2 rounded-lg text-center font-bold">WALA</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Betting Panel Area (Right) -->
+            <div id="betting-area" class="lg:w-1/4 w-full bg-gray-800 p-4 shadow-2xl">
+                <!-- Odds Table -->
+                <div class="grid grid-cols-3 gap-1 mb-6 text-center">
+                    <div class="bg-red-600 p-3 rounded-tl-lg font-bold text-lg">MERON</div>
+                    <div class="bg-green-600 p-3 font-bold text-lg">TIE</div>
+                    <div class="bg-blue-600 p-3 rounded-tr-lg font-bold text-lg">WALA</div>
+                    
+                    <div class="bg-secondary-bg p-3">
+                        <p class="text-2xl font-extrabold text-red-400" id="odd-meron">1.70</p>
+                        <p class="text-xs text-gray-400">8</p>
+                        <p class="text-xs text-gray-400" id="total-bet-meron">0</p>
+                    </div>
+                    <div class="bg-secondary-bg p-3">
+                        <p class="text-2xl font-extrabold text-green-400" id="odd-tie">8</p>
+                        <p class="text-xs text-gray-400">0</p>
+                        <p class="text-xs text-gray-400" id="total-bet-tie">0</p>
+                    </div>
+                    <div class="bg-secondary-bg p-3">
+                        <p class="text-2xl font-extrabold text-blue-400" id="odd-wala">2.20</p>
+                        <p class="text-xs text-gray-400">0</p>
+                        <p class="text-xs text-gray-400" id="total-bet-wala">0</p>
+                    </div>
+
+                    <!-- Bet Buttons -->
+                    <button class="bet-btn bg-red-800 hover:bg-red-700 mt-2 flex items-center justify-center" data-side="meron">
+                        <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" /></svg> Bet
+                    </button>
+                    <button class="bet-btn bg-green-800 hover:bg-green-700 mt-2 flex items-center justify-center" data-side="tie">
+                        <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 18l7.997-12.116A4 4 0 0013.973 2H6.028a4 4 0 00-3.996 3.884z" /></svg> Bet
+                    </button>
+                    <button class="bet-btn bg-blue-800 hover:bg-blue-700 mt-2 flex items-center justify-center" data-side="wala">
+                        <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 00-1 1v1a1 1 0 002 0V3a1 1 0 00-1-1zM2 10a1 1 0 011-1h1a1 1 0 110 2H3a1 1 0 01-1-1zM16 10a1 1 0 011-1h1a1 1 0 110 2h-1a1 1 0 01-1-1zM7 16a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" /></svg> Bet
+                    </button>
+                </div>
+
+                <!-- Bet Input Area -->
+                <div class="mb-6">
+                    <p class="text-sm text-gray-400 mb-2">Min: ₱1,000 and Max: ₱100,000</p>
+                    <div class="relative flex items-center">
+                        <input id="bet-input" type="number" value="1000" min="1000" max="100000"
+                               class="w-full p-3 rounded-l-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               placeholder="Enter amount">
+                        <button id="clear-input" class="p-3 bg-gray-600 hover:bg-gray-500 rounded-r-lg" aria-label="Clear input">
+                            <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chip Selector -->
+                <div class="flex flex-wrap justify-center gap-3 mb-6">
+                    <div class="chip bg-red-500" data-value="100">100</div>
+                    <div class="chip bg-blue-500" data-value="500">500</div>
+                    <div class="chip bg-yellow-500" data-value="1000">1K</div>
+                    <div class="chip bg-pink-500" data-value="5000">5K</div>
+                    <div class="chip bg-green-500" data-value="10000">10K</div>
+                    <div class="chip bg-purple-500" data-value="50000">50K</div>
+                </div>
+                
+                <!-- Action Buttons & Tabs -->
+                <div class="flex justify-between items-center border-t border-gray-700 pt-4">
+                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg">Bet List</button>
+                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg">Report</button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- State Management ---
+        let currentBetAmount = 1000;
+        let selectedSide = null; // 'meron', 'tie', or 'wala'
+
+        const betInput = document.getElementById('bet-input');
+        const clearInputButton = document.getElementById('clear-input');
+        const betButtons = document.querySelectorAll('.bet-btn');
+        const chips = document.querySelectorAll('.chip');
+
+        // Initialize input value
+        betInput.value = currentBetAmount;
+
+        // --- Utility Functions ---
+
+        /** Updates the input field with the current bet amount. */
+        function updateBetInput() {
+            betInput.value = currentBetAmount;
+        }
+
+        /** Handles clicking on a chip to set the bet amount. */
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const value = parseInt(chip.dataset.value, 10);
+                // Simple logic: if the current bet is the same as the chip, reset it, otherwise set it
+                if (currentBetAmount === value) {
+                    currentBetAmount = 0;
+                } else {
+                    currentBetAmount = value;
+                }
+                updateBetInput();
+            });
+        });
+
+        /** Handles direct input change on the amount field. */
+        betInput.addEventListener('input', (e) => {
+            currentBetAmount = parseInt(e.target.value, 10) || 0;
+        });
+
+        /** Handles the clear input button. */
+        clearInputButton.addEventListener('click', () => {
+            currentBetAmount = 0;
+            updateBetInput();
+        });
+
+        /** Handles clicking one of the main 'Bet' buttons. */
+        betButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const side = button.dataset.side;
+
+                if (currentBetAmount > 0) {
+                    // Simulate placing the bet
+                    selectedSide = side;
+                    
+                    // Display success message instead of using alert()
+                    showMessage(`Bet placed successfully on ${side.toUpperCase()} for ₱${currentBetAmount.toLocaleString()}.`);
+
+                    // Optional: Clear the input after betting
+                    currentBetAmount = 0;
+                    updateBetInput();
+
+                    // Optional: Update the displayed total bet count (simulated)
+                    const totalBetElement = document.getElementById(`total-bet-${side}`);
+                    let currentTotal = parseInt(totalBetElement.textContent, 10);
+                    totalBetElement.textContent = currentTotal + 1;
+
+                } else {
+                    showMessage("Please enter a valid bet amount greater than ₱0.");
+                }
+            });
+        });
+
+        // --- Custom Message Box (To replace alert()) ---
+        function showMessage(message) {
+            let messageBox = document.getElementById('message-box');
+            if (!messageBox) {
+                messageBox = document.createElement('div');
+                messageBox.id = 'message-box';
+                messageBox.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg shadow-xl font-semibold transition-opacity duration-300 z-50 opacity-0';
+                document.body.appendChild(messageBox);
+            }
+            messageBox.textContent = message;
+            messageBox.style.opacity = '1';
+
+            // Auto-hide the message after 3 seconds
+            setTimeout(() => {
+                messageBox.style.opacity = '0';
+            }, 3000);
+        }
+
+    </script>
+</body>
+</html>

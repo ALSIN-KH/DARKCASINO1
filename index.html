@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Login - CPRO</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="top-bar">
+        <h1 class="brand"><span>DG88</span> Login  </h1>
+        <div class="lang-selector">
+          <button class="lang-btn" data-lang="en" title="English">
+            <img src="https://flagcdn.com/w20/us.png" alt="English" />
+          </button>
+          <button class="lang-btn" data-lang="km" title="Khmer">
+            <img src="https://flagcdn.com/w20/kh.png" alt="Khmer" />
+          </button>
+          <button class="lang-btn" data-lang="vi" title="Vietnamese">
+            <img src="https://flagcdn.com/w20/vn.png" alt="Vietnamese" />
+          </button>
+          <button class="lang-btn" data-lang="zh" title="Chinese">
+            <img src="https://flagcdn.com/w20/cn.png" alt="Chinese" />
+          </button>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label id="labelUsername">Username</label>
+        <input type="text" id="loginUsername" placeholder="Enter your username" />
+      </div>
+
+      <div class="input-group">
+        <label id="labelPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter your password" />
+      </div>
+
+      <button onclick="loginUser()" class="btn" id="btnLogin">Login</button>
+
+      <p id="loginMessage" class="message"></p>
+
+      <footer>
+        <p id="footerText">
+          Not an admin?
+          <a href="#" onclick="alert('Please contact admin to create an account.')"
+            >Request access</a
+          >
+        </p>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
