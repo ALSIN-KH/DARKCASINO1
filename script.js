@@ -118,7 +118,7 @@ function loginUser() {
 
   setTimeout(() => {
     alert(`Welcome ${user.username}! Redirecting to the main site...`);
-    window.location.href = "/USER_COCK_LIVE/index.html";
+    window.location.href = "https://dg-88-agent.vercel.app/";
   }, 1000);
 }
 
@@ -133,3 +133,4 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
